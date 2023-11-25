@@ -17,8 +17,9 @@
                     </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Sei loggato!') }}
                 </div>
+                <a class="btn-primary btn " href="{{route('admin.apartments.index')}}">Visualizza Profilo</a>
             </div>
         </div>
     </div>
