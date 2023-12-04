@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
             [
                 UserSeeder::class,
                 ApartmentSeeder::class,
-                // MessageSeeder::class,
-                // ServiceSeeder::class,
-                // SponsorshipSeeder::class,
-                // ViewSeeder::class,
+                MessageSeeder::class,
+                ServiceSeeder::class,
+                SponsorshipSeeder::class,
+                ViewSeeder::class,
             ]
         );
     }
