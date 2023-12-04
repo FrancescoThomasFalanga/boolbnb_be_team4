@@ -46,9 +46,9 @@
                       <td class="align-middle d-none d-sm-table-cell">{{strlen($apartment->address) > 40 ? substr($apartment->address, 0, 40) . '...' : $apartment->address}}</td>
                       <td class="align-middle">
                         <div class="d-flex gap-3">
-                          <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
-                          <a href=""><i class="fa-regular fa-envelope"></i></a>
-                          <a href=""><i class="fa-solid fa-chart-line"></i></a>
+                          <a href="{{route ('admin.apartments.show' , $apartment->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a>
+                          <a href="{{route ('admin.messages.single', $apartment->id)}}"><i class="fa-regular fa-envelope"></i></a>
+                          <a href="{{route('admin.sponsorships.show', $apartment->slug)}}"><i class="fa-solid fa-chart-line"></i></a>
                         </div>
                       </td>
                     </tr>
