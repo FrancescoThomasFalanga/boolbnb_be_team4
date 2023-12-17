@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
+    public function index()
+    {
+        $apartments = Apartment::where('user_id', Auth::id())->get();
+
+        $apartmentIds = $apartments->pluck('id')->toArray();
+
+        $messages = Message::whereIn('apartment_id', $apartmentIds)->orderBy('created_at', 'desc')->get();
+
+        return view('admin.messages.index', compact('messages'));
+    }
 
     public function showByApartment($apartmentId)
     {
