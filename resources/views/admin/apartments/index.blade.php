@@ -4,6 +4,11 @@
 <main id="apartment_index">
     <div class="container">
 
+      <div class="d-flex my-5 justify-content-center justify-content-lg-start">
+        <a class="btn btn-outline-primary me-3"  href="{{route ('admin.apartments.create')}}">Aggiungi Appartamento</a>
+        <a class="btn btn-outline-primary me-3" href="{{route('admin.messages.index')}}">Tutti i Messaggi</a>
+      </div>
+
         <table class="table table-striped my-5">
             <thead>
             <tr>
