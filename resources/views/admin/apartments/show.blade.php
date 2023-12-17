@@ -13,7 +13,7 @@ $routeName = Route::currentRouteName();
 @section('content')
     <main id="apartment_show">
 
-        <div id="" class="">
+        <div id="" class="mb-5">
             <div class="card {{ $routeName == 'admin.dashboard' ? 'border-danger' : ''}}">
                 <div class="list-group list-group-flush d-flex gap-2 flex-row align-center">
                     <a href="{{route('admin.dashboard')}}" class="py-3 list-group-item list-group-item-action {{ routeNameContains('admin.dashboard') ? 'active' : ''}}"><i class="fa-solid fa-house me-2"></i> Dashboard</a>
