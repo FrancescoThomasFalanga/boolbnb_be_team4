@@ -68,4 +68,43 @@ class SponsorshipController extends Controller
                     return back()->withErrors('An error occurred with the message: ' . $result->message);
                 }
     }
+
+    public function show($slug)
+    {
+        // Find the apartment with the given slug
+        $apartment = Apartment::where('slug', $slug)->firstOrFail();
+
+        // Get the sponsorships associated with the apartment
+        $sponsorships = $apartment->sponsorships;
+
+        // Let's take the latest sponsorship for this example, you might want to adapt this as per your needs
+        $sponsorship = $sponsorships->last();
+
+        // Generate the Braintree token
+        $token = $this->gateway->clientToken()->generate();
+
+        return view('admin.sponsorships.show', compact('sponsorship', 'apartment', 'token'));
+    }
+
+    public function update(Request $request, Sponsorship $sponsorship)
+    {
+        $amount = $request->amount;
+        $nonce = $request->payment_method_nonce;
+
+        $result = $this->gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+
+        if ($result->success) {
+            // Handle post-payment success logic here (e.g. update the sponsorship's status)
+            return back()->with('success_message', 'Transaction successful. The sponsorship is now active.');
+        } else {
+            // Handle post-payment failure logic here
+            return back()->withErrors('An error occurred with the message: ' . $result->message);
+        }
+    }
 }
